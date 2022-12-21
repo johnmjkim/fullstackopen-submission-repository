@@ -12,6 +12,17 @@ const DisplayPercent = (props) => (
   </div>
 )
 
+const Statistics = (props) => (
+  <div>
+    <Display value={props.good} text={"good"}></Display>
+    <Display value={props.neutral} text={"neutral"}></Display>
+    <Display value={props.bad} text={"bad"}></Display>
+    <Display value={props.sum} text={"all"}></Display>
+    <Display value={(props.good - props.bad)/props.sum} text={"average"}></Display>
+    <DisplayPercent value={props.good/props.sum} text={"positive"}></DisplayPercent>
+  </div>
+)
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0)
@@ -36,14 +47,7 @@ const App = () => {
       <h1>
         statistics
       </h1>
-      <p>
-        <Display value={good} text={"good"}></Display>
-        <Display value={neutral} text={"neutral"}></Display>
-        <Display value={bad} text={"bad"}></Display>
-        <Display value={sum} text={"all"}></Display>
-        <Display value={(good - bad)/sum} text={"average"}></Display>
-        <DisplayPercent value={good/sum} text={"positive"}></DisplayPercent>
-      </p>
+      <Statistics good={good} neutral={neutral} bad={bad} sum={sum}></Statistics>
     </div>
   )
 }
