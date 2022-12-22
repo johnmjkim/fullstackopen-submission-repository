@@ -1,15 +1,17 @@
 import { useState } from 'react'
 
-const Display = (props) => (
-  <div>
-    {props.text} {props.value}
-  </div>
+const StatisticLine = (props) => (
+  <tr>
+    <td>{props.text}</td>
+    <td>{props.value}</td>
+  </tr>
 )
 
-const DisplayPercent = (props) => (
-  <div>
-    {props.text} {props.value*100}%
-  </div>
+const StatisticLinePercent = (props) => (
+  <tr>
+    <td>{props.text}</td>
+    <td>{props.value*100}%</td>
+  </tr>
 )
 
 const Button = ({ handleClick, text }) => (
@@ -27,14 +29,14 @@ const Statistics = (props) => {
     )
   }
   return(
-    <div>
-      <Display value={props.good} text={"good"}></Display>
-      <Display value={props.neutral} text={"neutral"}></Display>
-      <Display value={props.bad} text={"bad"}></Display>
-      <Display value={props.sum} text={"all"}></Display>
-      <Display value={(props.good - props.bad)/props.sum} text={"average"}></Display>
-      <DisplayPercent value={props.good/props.sum} text={"positive"}></DisplayPercent>
-    </div>
+    <tr>
+      <StatisticLine text="good" value={props.good}></StatisticLine>
+      <StatisticLine text="neutral" value={props.neutral}></StatisticLine>
+      <StatisticLine text="bad" value={props.bad}></StatisticLine>
+      <StatisticLine text="all" value={props.sum}></StatisticLine>
+      <StatisticLine text="average" value={(props.good - props.bad)/props.sum}></StatisticLine>
+      <StatisticLinePercent text="positive" value={props.good/props.sum}></StatisticLinePercent>
+    </tr>
   )
 }
 
